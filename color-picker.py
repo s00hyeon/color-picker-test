@@ -125,13 +125,15 @@ def main():
             
             col1_1, col1_2, col1_3 = st.columns(3)
             with col1_1:
-                L = st.number_input("L*", min_value=0.0, max_value=100.0, value=50.0, step=0.1)
+                L_lab = st.slider("L*", min_value=0.0, max_value=100.0, value=50.0, step=0.1)
             with col1_2:
-                a = st.number_input("a*", min_value=-128.0, max_value=127.0, value=0.0, step=0.1)
+                a_lab = st.slider("a*", min_value=-128.0, max_value=127.0, value=0.0, step=0.1)
             with col1_3:
-                b_lab = st.number_input("b*", min_value=-128.0, max_value=127.0, value=0.0, step=0.1)
+                b_lab = st.slider("b*", min_value=-128.0, max_value=127.0, value=0.0, step=0.1)
             
-            lab_values = [L, a, b_lab]
+            lab_values = [L_lab, a, b_lab]
+            
+            st.info(f"입력된 LAB 값: L*={L_lab:.1f}, a*={a_lab:.1f}, b*={b_lab:.1f}")
             
             st.info(f"입력된 LAB 값: L*={L:.1f}, a*={a:.1f}, b*={b_lab:.1f}")
             
