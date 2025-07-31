@@ -133,11 +133,11 @@ def main():
             
             col1_1, col1_2, col1_3 = st.columns(3)
             with col1_1:
-                st.session_state.L_lab = st.slider("L*", min_value=0.0, max_value=100.0, step=0.01, key="L_lab")
+                st.slider("L*", min_value=0.0, max_value=100.0, step=0.01, key="L_lab")
             with col1_2:
-                st.session_state.a_lab = st.slider("a*", min_value=-128.0, max_value=127.0, step=0.01, key="a_lab")
+                st.slider("a*", min_value=-128.0, max_value=127.0, step=0.01, key="a_lab")
             with col1_3:
-                st.session_state.b_lab = st.slider("b*", min_value=-128.0, max_value=127.0, step=0.01, key="b_lab")
+                st.slider("b*", min_value=-128.0, max_value=127.0, step=0.01, key="b_lab")
             
             lab_values = [st.session_state.L_lab, st.session_state.a_lab, st.session_state.b_lab]
             
