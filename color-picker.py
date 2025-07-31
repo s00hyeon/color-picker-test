@@ -44,7 +44,15 @@ def main():
     st.set_page_config(page_title="RGB ↔ LAB 색상 변환기", layout="wide")
     
     st.title("RGB ↔ LAB 색상 변환기")
-    st.markdown("RGB와 CIE LAB 색 공간 간의 변환을 수행할 수 있습니다.")
+    
+    # LAB → RGB 탭의 슬라이더 값을 위한 세션 상태 초기화
+    if 'L_lab' not in st.session_state:
+        st.session_state.L_lab = 50.0
+    if 'a_lab' not in st.session_state:
+        st.session_state.a_lab = 0.0
+    if 'b_lab' not in st.session_state:
+        st.session_state.b_lab = 0.0
+
     
     # 사이드바에서 변환 방향 선택
     # conversion_mode = st.sidebar.selectbox(
@@ -125,17 +133,15 @@ def main():
             
             col1_1, col1_2, col1_3 = st.columns(3)
             with col1_1:
-                L_lab = st.slider("L*", min_value=0.0, max_value=100.0, value=50.0, step=0.1)
+                st.session_state.L_lab = st.slider("L*", min_value=0.0, max_value=100.0, step=0.01, key="L_lab")
             with col1_2:
-                a_lab = st.slider("a*", min_value=-128.0, max_value=127.0, value=0.0, step=0.1)
+                st.session_state.a_lab = st.slider("a*", min_value=-128.0, max_value=127.0, step=0.01, key="a_lab")
             with col1_3:
-                b_lab = st.slider("b*", min_value=-128.0, max_value=127.0, value=0.0, step=0.1)
+                st.session_state.b_lab = st.slider("b*", min_value=-128.0, max_value=127.0, step=0.01, key="b_lab")
             
-            lab_values = [L_lab, a, b_lab]
+            lab_values = [st.session_state.L_lab, st.session_state.a_lab, st.session_state.b_lab]
             
-            st.info(f"입력된 LAB 값: L*={L_lab:.1f}, a*={a_lab:.1f}, b*={b_lab:.1f}")
-            
-            st.info(f"입력된 LAB 값: L*={L:.1f}, a*={a:.1f}, b*={b_lab:.1f}")
+            #  st.info(f"입력된 LAB 값: L*={st.session_state.L_lab:.1f}, a*={st.session_state.a_lab:.1f}, b*={st.session_state.b_lab:.1f}")
             
         with colb:
             st.subheader("→RGB 변환 결과")
